@@ -1,36 +1,208 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RAHMA TOP UP</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>RAHMA TOP UP - Murah & Cepat</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#2c3142;color:white;}
-header{background:#e11d48;padding:15px;display:flex;justify-content:space-between;align-items:center;}
-.logo{font-size:20px;font-weight:600;}
-.login-btn{background:#2563eb;padding:6px 12px;border-radius:6px;cursor:pointer;}
-.search{padding:15px;}
-.search input{width:100%;padding:12px;border-radius:10px;border:none;}
-.games{padding:15px;}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-.card{background:#1f2333;border-radius:15px;overflow:hidden;cursor:pointer;transition:0.3s;border:1px solid #374151;}
-.card:hover{transform:scale(1.05);border-color:#e11d48;}
-.card img{width:100%;height:100px;object-fit:cover;}
-.title{padding:8px;text-align:center;font-size:12px;font-weight:600;}
-.topup{display:none;padding:20px;}
-.box{background:#1f2333;padding:15px;border-radius:10px;margin-bottom:15px;}
-.box input{width:100%;padding:10px;border:none;border-radius:8px;margin-top:10px;background: #2c3142;color: white;}
-.item-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;max-height:350px;overflow:auto;}
-.item-btn{background:#374151;padding:10px;border:none;border-radius:8px;color:white;cursor:pointer;font-size:11px;border: 1px solid transparent;}
-.item-btn.active{background:#e11d48;border-color: white;}
-.main-btn{width:100%;padding:12px;margin-top:10px;background:#22c55e;border:none;border-radius:8px;color:white;font-weight: bold;cursor: pointer;}
-.back-btn{background:#374151;margin-bottom: 50px;}
-#popup,#loginPopup,#historyPopup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index: 999;}
-.popup-box,.login-box{background:#1f2333;padding:20px;border-radius:10px;text-align:center;width:85%;max-width:350px;border: 1px solid #e11d48;}
-.popup-btn{background:#e11d48;border:none;padding:10px 20px;color:white;border-radius:6px;cursor:pointer;margin-top:10px;}
-.social-btn{width:100%;padding:10px;margin-top:10px;border:none;border-radius:8px;cursor:pointer;color:white;}
-.google{background:#ea4335;}
-.facebook{background:#1877f2;}
-.twitter{background:#1da1f2;}
+:root {
+    --primary: #ff6699;
+    --secondary: #ff99c8;
+    --accent: #ffccd5;
+    --bg: #fff0f3;
+    --text: #4a0e1c;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background: var(--bg);color: var(--text); line-height: 1.6;}
+
+/* Header & Hero */
+header{background: white; padding:20px; text-align:center; font-size:24px; font-weight:700; color: var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-bottom: 3px solid var(--secondary);}
+.hero{text-align:center; padding:40px 20px; background: linear-gradient(135deg, var(--secondary), var(--primary)); color: white; border-radius: 0 0 30px 30px;}
+.hero h1 { font-size: 26px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+.hero p { font-size: 14px; opacity: 0.9; }
+
+/* Grid Games */
+.games{padding:25px 15px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{background: white; border-radius:18px; overflow:hidden; text-align:center; cursor:pointer; box-shadow: 0 6px 15px rgba(255, 102, 153, 0.15); transition: 0.3s;}
+.card:hover{transform:translateY(-5px); box-shadow: 0 10px 20px rgba(255, 102, 153, 0.25);}
+.card img{width:100%; height:130px; object-fit:cover; border-bottom: 2px solid var(--accent);}
+.card h3{padding:12px; font-size:14px; font-weight: 600;}
+
+/* Panel Topup */
+.topup{display:none; padding:20px; animation: fadeIn 0.4s ease-in-out;}
+@keyframes fadeIn { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
+
+.box{background: white; padding:20px; border-radius:18px; margin-bottom:20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid var(--accent);}
+.box h3 { font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.box h3::before { content: '✨'; }
+
+input{width:100%; padding:14px; border: 2px solid var(--accent); border-radius:12px; margin-top:10px; font-family: inherit; transition: 0.3s;}
+input:focus { border-color: var(--primary); outline: none; background: #fffafb; }
+
+/* Items & Payment Grid */
+.item-grid, .pay-grid {display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:10px}
+.item-btn, .pay-btn {background: #fff; padding:15px 10px; border: 2px solid var(--accent); border-radius:12px; color: var(--text); cursor:pointer; font-size:12px; font-weight: 600; transition: 0.2s;}
+.item-btn.active, .pay-btn.active {background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 5px 12px rgba(255, 102, 153, 0.4);}
+
+/* Buttons */
+.main-btn{width:100%; padding:16px; margin-top:10px; background: var(--primary); border:none; border-radius:14px; color:white; font-weight:700; font-size:16px; cursor:pointer; box-shadow: 0 6px 15px rgba(255, 102, 153, 0.3);}
+.btn-secondary { background: #374151; margin-bottom: 40px; }
+
+/* Info QRIS/TF */
+.qris-box{display:none; background: #fff5f7; padding:15px; border-radius:12px; border: 2px dashed var(--primary); margin-top:15px; text-align:center;}
+.qris-box p { font-weight: 600; color: var(--primary); margin-bottom: 8px; }
+.copy-btn { background: var(--secondary); color: white; border: none; padding: 5px 15px; border-radius: 6px; font-size: 12px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<header>RAHMA TOP UP</header>
+<div class="hero" id="heroSection">
+    <h1>Top Up Murah & Cepat ✨</h1>
+    <p>Pilihan Gamers Terpercaya Indonesia</p>
+</div>
+
+<div class="games" id="games">
+    <div class="grid">
+        <div class="card" onclick="openGame('ml')">
+            <img src="https://cdn.oneesports.gg/cdn-data/2022/06/MLBB_new_logo.jpg">
+            <h3>Mobile Legends</h3>
+        </div>
+        <div class="card" onclick="openGame('ff')">
+            <img src="https://cdn.oneesports.gg/cdn-data/2021/08/FreeFireLogo.jpg">
+            <h3>Free Fire</h3>
+        </div>
+        <div class="card" onclick="openGame('pubg')">
+            <img src="https://cdn.oneesports.gg/cdn-data/2021/03/PUBG-Mobile-logo.jpg">
+            <h3>PUBG Mobile</h3>
+        </div>
+        <div class="card" onclick="openGame('hsr')">
+            <img src="https://cdn.oneesports.gg/cdn-data/2023/04/HonkaiStarRailLogo.jpg">
+            <h3>Honkai Star Rail</h3>
+        </div>
+    </div>
+</div>
+
+<div class="topup" id="topup">
+    <h2 id="gameTitle" style="margin-bottom: 15px; text-align: center; color: var(--primary);"></h2>
+    
+    <div class="box">
+        <h3>Lengkapi Data</h3>
+        <input id="userid" placeholder="Masukkan User ID">
+        <input id="server" placeholder="Server (Contoh: 1234)">
+    </div>
+
+    <div class="box">
+        <h3>Pilih Nominal</h3>
+        <div class="item-grid" id="itemList"></div>
+    </div>
+
+    <div class="box">
+        <h3>Metode Pembayaran</h3>
+        <div class="pay-grid">
+            <button class="pay-btn" onclick="selectPay(this,'DANA')">DANA</button>
+            <button class="pay-btn" onclick="selectPay(this,'GOPAY')">GOPAY</button>
+        </div>
+        <div class="qris-box" id="qrisBox">
+            <p id="payInfo"></p>
+            <button class="copy-btn" onclick="copyPay()">Salin Nomor</button>
+        </div>
+    </div>
+
+    <button class="main-btn" onclick="buy()">🚀 Pesan Sekarang</button>
+    <button class="main-btn btn-secondary" onclick="back()">⬅ Kembali</button>
+</div>
+
+<script>
+let game="";
+let selectedItem="";
+let price=0;
+let payment="";
+
+const danaNo = "087823020881";
+const gopayNo = "087823020881";
+
+const items={
+    ml:[['86 DM',15000],['172 DM',30000],['257 DM',45000],['344 DM',60000],['514 DM',90000],['WDP 1×',29000],['WDP 2×',58000],['WDP 3×',86500]],
+    ff:[['70 Diamond',10000],['140 Diamond',20000],['355 Diamond',50000],['720 Diamond',100000],['Booyah Pass',44000],['Member Mingguan',30000]],
+    pubg:[['60 UC',16000],['325 UC',75000],['660 UC',150000],['1800 UC',350000]],
+    hsr:[['60 Oneiric',16000],['300 Oneiric',79000],['980 Oneiric',249000],['1980 Oneiric',479000]]
+}
+
+function openGame(g){
+    game=g;
+    document.getElementById('games').style.display='none';
+    document.getElementById('heroSection').style.display='none';
+    document.getElementById('topup').style.display='block';
+    window.scrollTo(0,0);
+    const nameMap={ml:'Mobile Legends',ff:'Free Fire',pubg:'PUBG Mobile',hsr:'Honkai Star Rail'};
+    document.getElementById('gameTitle').innerText = nameMap[g];
+    loadItems();
+}
+
+function loadItems(){
+    const list=document.getElementById('itemList');
+    list.innerHTML='';
+    items[game].forEach(i=>{
+        const btn=document.createElement('button');
+        btn.className='item-btn';
+        btn.innerHTML = `<b>${i[0]}</b><br>Rp ${i[1].toLocaleString()}`;
+        btn.onclick=function(){
+            document.querySelectorAll('.item-btn').forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedItem=i[0];
+            price=i[1];
+        }
+        list.appendChild(btn);
+    });
+}
+
+function selectPay(el,p){
+    document.querySelectorAll('.pay-btn').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
+    payment=p;
+    const box = document.getElementById('qrisBox');
+    box.style.display='block';
+    document.getElementById('payInfo').innerText = `Kirim ke ${p}: ${danaNo}`;
+}
+
+function copyPay(){
+    navigator.clipboard.writeText(danaNo);
+    alert('Nomor ' + payment + ' berhasil disalin!');
+}
+
+function buy(){
+    const user=document.getElementById('userid').value;
+    const server=document.getElementById('server').value;
+    
+    if(!user || !selectedItem || !payment){
+        alert('Mohon lengkapi ID, Nominal, dan Pembayaran!');
+        return;
+    }
+
+    const text=
+    '*ORDER TOPUP RAHMA*%0A' +
+    '----------------------------%0A' +
+    '*Game:* '+game.toUpperCase()+'%0A' +
+    '*ID/User:* '+user+' ('+server+')%0A' +
+    '*Item:* '+selectedItem+'%0A' +
+    '*Metode:* '+payment+'%0A' +
+    '*Total:* Rp '+price.toLocaleString()+'%0A' +
+    '----------------------------%0A' +
+    'Mohon segera diproses ya Min! Terlampir bukti bayar.';
+    
+    window.open('https://wa.me/'+danaNo+'?text='+text);
+}
+
+function back(){
+    document.getElementById('topup').style.display='none';
+    document.getElementById('heroSection').style.display='flex';
+    document.getElementById('games').style.display='block';
+}
+</script>
+</body>
+</html>
+
